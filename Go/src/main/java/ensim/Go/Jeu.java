@@ -10,7 +10,7 @@ public class Jeu {
 		Goban goban = new Goban();
 		Pierre p = new Pierre("p1");
 		Pierre p2 = new Pierre("p2");
-		
+		Pierre p3 = new Pierre("p3");
 		
 		goban.matricePierre[1][1] = p;
 		p.x = 1;
@@ -21,6 +21,9 @@ public class Jeu {
 		p2.y=2;
 		goban.matricePierre[1][2]= p2;
 		
+		p3.x=0;
+		p3.y=8;
+		goban.matricePierre[0][8]= p3;
 		
 		
 		System.out.println("Pierre à x=1 et y=1 : " + goban.retourPierre(1,1).nom);
@@ -32,6 +35,8 @@ public class Jeu {
 		for( int i=0 ; i<list.size(); i++) {
 			System.out.println("Pierre(s) qui entoure(nt) la pierre p2 :" + list.get(i).nom);
 		}
+		System.out.println("Nombre de libertés de p2 :" + p2.nLibertes(goban));
+		System.out.println("Nombre de libertés de p3 :" + p3.nLibertes(goban));
 	}
 
 }
