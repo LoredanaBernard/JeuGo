@@ -15,11 +15,11 @@ public class Pierre {
 	
 	// Retourne le nombre de bords que la pierre touche
 	int nBords() { 
-		if((x==0 && y==0) || (x==0 && y==9) || (x==9 && y==0) || (x==9 && y==0)) {
+		if((x==0 && y==0) || (x==0 && y==8) || (x==8 && y==0) || (x==8 && y==0)) {
 			return 2;
 		}
 		else {
-			if ( x==0 || y==0 || x==9 || y==9 ) {
+			if ( x==0 || y==0 || x==8 || y==8 ) {
 				return 1;
 			}
 			else {
@@ -45,13 +45,13 @@ public class Pierre {
 			}	
 		}
 		// Ajout de la pierre à droite si elle existe
-		if (x!=9) {
+		if (x!=8) {
 			if (!goban.estLibre(x+1,y) ) {
 				pEntoure.add(goban.retourPierre(x+1,y));
 			}	
 		}
 		// Ajout de la pierre en dessous si elle existe
-		if (y!=9) {
+		if (y!=8) {
 			if (!goban.estLibre(x,y+1)) {
 				pEntoure.add(goban.retourPierre(x,y+1));
 			}	
@@ -60,6 +60,10 @@ public class Pierre {
 		return pEntoure;
 	}
 	
+	// Retourne le nombre de libertes de la pierre
+	public int nLibertes(Goban goban) {
+		return 4-(entoure(goban).size() + nBords());
+	}
 	
 
 
