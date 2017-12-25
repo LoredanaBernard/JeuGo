@@ -24,6 +24,8 @@ public class Joueur {
 	public void capturePierre(Goban goban, int x, int y) {
 		
 		// Capture les pierres adverses qui n'ont plus de libertés 
+		// Liste de pierres qui representent un territoire 
+		// Efface toutes les pierres de ce territoire
 	}
 
 }
