@@ -28,7 +28,7 @@ public class Pierre {
 		}
 	}
 
-	// Retourne la liste des pierres qui entoure 
+	// Retourne la liste des pierres qui entourent  
 	List <Pierre> entoure(Goban goban){
 
 		List<Pierre> pEntoure = new ArrayList<Pierre>();
@@ -58,6 +58,17 @@ public class Pierre {
 		}
 		
 		return pEntoure;
+	}
+	
+	// Retourne les pierres adverses qui entourent
+	public List<Pierre> entoureAdverse(Goban goban){
+		List<Pierre> listeEntoure = entoure(goban);
+		for( Pierre p : listeEntoure) {
+			if ( p.color.equals(this.color)) {	// Si la pierre est de la même couleur que celle testée
+				listeEntoure.remove(p);		// On la supprime de la liste 
+			}
+		}
+		return listeEntoure;
 	}
 	
 	// Retourne le nombre de libertes de la pierre
