@@ -7,6 +7,7 @@ public class Joueur {
 	Goban goban;
 	String couleur;
 	int nPierre = 1;
+	int nCaptureAdverse = 0;
 
 	Joueur(String c){
 		this.couleur=c;
@@ -21,6 +22,10 @@ public class Joueur {
 			p.y = y;
 			goban.matricePierre[x][y]= p;	// Attribution de la pierre à une intersection du goban
 			nPierre++;
+//			if ( p.entoureAdverse(goban).size()>0) {
+//				capturePierre(goban, p);
+//			}
+			
 		}
 		else {
 			p = null;
@@ -96,9 +101,13 @@ public class Joueur {
 			pEntoure2 = pEntoure;
 		}
 
-		System.out.println("Territoire capturé !");
+		
 		// Suppression des pierres
 		for (Pierre d : aEnlever) {
+			if ( aEnlever.size()!=0) {
+				goban.afficherGoban();
+			}
+			nCaptureAdverse += aEnlever.size();
 			System.out.println("Pierre " + d.nom +" " + d.x + " "+ d.y+ " capturée");
 			goban.matricePierre[d.x][d.y] = null;  // Libère l'intersection du goban 
 			d.x = -1;	// Change la position de la pierre e, valeur négative pour sa sortie
