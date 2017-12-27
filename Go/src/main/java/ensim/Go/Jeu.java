@@ -2,8 +2,22 @@ package ensim.Go;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Jeu {
+	
+	public void finDeJeu (Joueur j1, Joueur j2) {
+		int scoreJ1 = j1.nPierre -j2.nCaptureAdverse;
+		int scoreJ2 = j2.nPierre -j1.nCaptureAdverse;
+		
+		if (scoreJ1 > scoreJ2) {
+			System.out.println("Le gagnant est Joueur 1 ! " );
+		}
+		else {
+			System.out.println("Le gagnant est Joueur 2 ! " );
+		}
+		
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -37,11 +51,12 @@ public class Jeu {
 		}
 		System.out.println("Nombre de libertés de p2 :" + p2.nLibertes(goban));
 		System.out.println("Nombre de libertés de p3 :" + p3.nLibertes(goban));
-		*/
+		
 		
 		Goban goban = new Goban();
 		Joueur j1 = new Joueur("b");
 		Joueur j2 = new Joueur ("n");
+		
 		
 		//System.out.println("Intersection 1,1 libre : " + goban.estLibre(1,1));
 		j1.placerPierre(goban, 1, 1);
@@ -76,11 +91,55 @@ public class Jeu {
 		Pierre d8 =j2.placerPierre(goban, 4, 5);
 		Pierre d9 =j2.placerPierre(goban, 6, 1);
 		Pierre d10=j2.placerPierre(goban, 6, 0);
-		
+		goban.afficherGoban();
 		//System.out.println("Intersection 2,2 occupée par : " + goban.matricePierre[2][2].nom);
 	//	p.entoure(goban);
 		//p.entoureAdverse(goban);
 		j1.capturePierre(goban, p);
+		int scoreJ1 = j1.nPierre -j2.nCaptureAdverse;
+		int scoreJ2 = j2.nPierre -j1.nCaptureAdverse;
+		
+		if (scoreJ1 > scoreJ2) {
+			System.out.println("Le gagnant est Joueur 1 ! " );
+		}
+		else {
+			System.out.println("Le gagnant est Joueur 2 ! " );
+		}*/
+		
+		
+		Goban goban = new Goban();
+		Joueur j1 = new Joueur("b");
+		Joueur j2 = new Joueur ("n");
+		Scanner sc = new Scanner(System.in);
+		int x;
+		int y;
+		do {
+			// Joueur 1 
+			System.out.println("Veuillez saisir une position de pierre :");
+			System.out.print("x : ");
+			int str = sc.nextInt();
+			x = str;
+			System.out.print("y : ");
+			str = sc.nextInt();
+			y = str;
+			Pierre p = j1.placerPierre(goban,x, y);
+			goban.afficherGoban();
+			j1.capturePierre(goban,p);
+			
+			// Joueur 2
+			System.out.println("Veuillez saisir une position de pierre :");
+			System.out.print("x : ");
+			int str2 = sc.nextInt();
+			x = str2;
+			System.out.print("y : ");
+			str2 = sc.nextInt();
+			y = str2;
+			Pierre d = j2.placerPierre(goban,x, y);
+			goban.afficherGoban();
+			j2.capturePierre(goban,d);
+			
+			System.out.print("Continuer ? ");
+		}while ( sc.nextInt() != -1);
 	}
 
 }
