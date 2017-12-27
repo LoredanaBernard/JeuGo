@@ -16,7 +16,7 @@ public class Pierre {
 	
 	// Retourne le nombre de bords que la pierre touche
 	int nBords() { 
-		if((x==0 && y==0) || (x==0 && y==8) || (x==8 && y==0) || (x==8 && y==0)) {
+		if((x==0 && y==0) || (x==0 && y==8) || (x==8 && y==0) || (x==8 && y==8)) {
 			return 2;
 		}
 		else {
@@ -57,9 +57,7 @@ public class Pierre {
 			}	
 		}
 		
-		for ( Pierre p : pEntoure) {
-			//System.out.println("Pierres autour de " + this.nom + " : " + p.nom);
-		}
+	
 		return pEntoure;
 	}
 	
@@ -71,8 +69,7 @@ public class Pierre {
 			if ( (p.color).equals(this.color)) {	// Si la pierre est de la même couleur que celle testée
 				listeEntoure.remove(p);		// On la supprime de la liste 
 			}
-		}
-		
+		}		
 		return listeEntoure;
 	}
 	
