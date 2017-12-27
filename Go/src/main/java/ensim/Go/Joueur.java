@@ -22,9 +22,7 @@ public class Joueur {
 			p.y = y;
 			goban.matricePierre[x][y]= p;	// Attribution de la pierre à une intersection du goban
 			nPierre++;
-//			if ( p.entoureAdverse(goban).size()>0) {
-//				capturePierre(goban, p);
-//			}
+//			
 			
 		}
 		else {
@@ -33,7 +31,7 @@ public class Joueur {
 		}
 		return p;
 	}
-	// Compare 2 listes de Pierres
+	// Compare 2 listes de Pierres : si aEnlever contient toutes les pierres de entoure
 	public boolean compareList (List<Pierre> entoure, List<Pierre> aEnlever) {
 		int i=0;
 		for ( Pierre p : entoure) {
