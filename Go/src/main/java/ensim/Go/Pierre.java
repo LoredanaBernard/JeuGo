@@ -9,8 +9,9 @@ public class Pierre {
 	public String color;
 	public String nom;
 	
-	Pierre(String n){
+	Pierre(String n, String color){
 		this.nom =n;
+		this.color = color;
 	}
 	
 	// Retourne le nombre de bords que la pierre touche
@@ -30,7 +31,6 @@ public class Pierre {
 
 	// Retourne la liste des pierres qui entourent  
 	List <Pierre> entoure(Goban goban){
-
 		List<Pierre> pEntoure = new ArrayList<Pierre>();
 		// Ajout de la pierre à gauche si elle existe
 		if(x!=0) {
@@ -57,17 +57,34 @@ public class Pierre {
 			}	
 		}
 		
+		for ( Pierre p : pEntoure) {
+			//System.out.println("Pierres autour de " + this.nom + " : " + p.nom);
+		}
 		return pEntoure;
 	}
 	
 	// Retourne les pierres adverses qui entourent
 	public List<Pierre> entoureAdverse(Goban goban){
-		List<Pierre> listeEntoure = entoure(goban);
-		for( Pierre p : listeEntoure) {
-			if ( p.color.equals(this.color)) {	// Si la pierre est de la même couleur que celle testée
+		List<Pierre> listeEntoure = new ArrayList<Pierre>();
+		listeEntoure = entoure(goban);
+		for( Pierre p : entoure(goban)) {
+			if ( (p.color).equals(this.color)) {	// Si la pierre est de la même couleur que celle testée
 				listeEntoure.remove(p);		// On la supprime de la liste 
 			}
 		}
+		
+		return listeEntoure;
+	}
+	
+	public List<Pierre> entoureAllie(Goban goban){
+		List<Pierre> listeEntoure = new ArrayList<Pierre>();
+		listeEntoure = entoure(goban);
+		for( Pierre p : entoure(goban)) {
+			if ( !(p.color).equals(this.color)) {	// Si la pierre est de la même couleur que celle testée
+				listeEntoure.remove(p);		// On la supprime de la liste 
+			}
+		}
+		
 		return listeEntoure;
 	}
 	
