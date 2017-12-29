@@ -14,16 +14,16 @@ public class Joueur {
 	}
 
 	// Place une pierre sur le goban
-	public Pierre placerPierre(Goban goban, int x, int y) {
+	public Pierre placerPierre(Goban goban, int l, int c) {
 		Pierre p ;
-		if (goban.estLibre(x, y)) {		// Si l'intersecrion du goban n'e'st pas encore prise
+		if (goban.estLibre(l, c)) {		// Si l'intersecrion du goban n'e'st pas encore prise
 			p = new Pierre(this.couleur + this.nPierre, this.couleur); // Création d'une nouvelle pierre
-			p.x = x;
-			p.y = y;
-			goban.matricePierre[x][y]= p;	// Attribution de la pierre à une intersection du goban
+			p.l = l;
+			p.c = c;
+			goban.matricePierre[l][c]= p;	// Attribution de la pierre à une intersection du goban
 			nPierre++;
-//			
-			
+			//			
+
 		}
 		else {
 			p = null;
@@ -57,7 +57,7 @@ public class Joueur {
 		pEntoure = r.entoureAdverse(goban);
 		pEntoure2 = pEntoure;
 		for(Pierre p : pEntoure2) {
-			
+
 			while ( (aAnalyser.size()>0 || compareList(pEntoure, aEnlever) == false ) && (p.nLibertes(goban)==0) ) {
 				if(aAnalyser.size()>0) {
 					if(p.equals(aAnalyser.get(0))){
@@ -97,20 +97,24 @@ public class Joueur {
 			}
 			pEntoure = r.entoureAdverse(goban);
 			pEntoure2 = pEntoure;
+
 		}
 
-		
-		// Suppression des pierres
-		for (Pierre d : aEnlever) {
-			if ( aEnlever.size()!=0) {
-				goban.afficherGoban();
-			}
-			nCaptureAdverse += aEnlever.size();
-			System.out.println("Pierre " + d.nom +" " + d.x + " "+ d.y+ " capturée");
-			goban.matricePierre[d.x][d.y] = null;  // Libère l'intersection du goban 
-			d.x = -1;	// Change la position de la pierre e, valeur négative pour sa sortie
-			d.y = -1;
+		if ( aEnlever.size() !=0) {
+			// Suppression des pierres
+			for (Pierre d : aEnlever) {
+				if ( aEnlever.size()!=0) {
+					goban.afficherGoban();
+				}
+				nCaptureAdverse += aEnlever.size();
+				System.out.println("Pierre " + d.nom +" " + d.l + " "+ d.c+ " capturée");
+				goban.matricePierre[d.l][d.c] = null;  // Libère l'intersection du goban 
+				d.l = -1;	// Change la position de la pierre e, valeur négative pour sa sortie
+				d.c = -1;
+			}		
+			goban.afficherGoban();
 		}
+
 
 	}
 

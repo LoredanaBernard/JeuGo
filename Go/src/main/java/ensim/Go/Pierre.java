@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pierre {
-	public int x;
-	public int y;
+	public int l;
+	public int c;
 	public String color;
 	public String nom;
 	
@@ -16,11 +16,11 @@ public class Pierre {
 	
 	// Retourne le nombre de bords que la pierre touche
 	int nBords() { 
-		if((x==0 && y==0) || (x==0 && y==8) || (x==8 && y==0) || (x==8 && y==8)) {
+		if((l == 0 && c == 0) || (l == 0 && c == 8) || (l == 8 && c == 0) || (l == 8 && c == 8)) {
 			return 2;
 		}
 		else {
-			if ( x==0 || y==0 || x==8 || y==8 ) {
+			if ( l == 0 || c == 0 || l == 8 || c == 8 ) {
 				return 1;
 			}
 			else {
@@ -32,28 +32,28 @@ public class Pierre {
 	// Retourne la liste des pierres qui entourent  
 	List <Pierre> entoure(Goban goban){
 		List<Pierre> pEntoure = new ArrayList<Pierre>();
-		// Ajout de la pierre à gauche si elle existe
-		if(x!=0) {
-			if (!goban.estLibre(x-1,y)) {
-				pEntoure.add(goban.retourPierre(x-1,y));
+		// Ajout de la pierre au dessus si elle existe
+		if(l!=0) {
+			if (!goban.estLibre(l-1,c)) {
+				pEntoure.add(goban.retourPierre(l-1,c));
 			}			
 		}
-		// Ajout de la pierre au dessus si elle existe
-		if (y!=0) {
-			if (!goban.estLibre(x,y-1)) {
-				pEntoure.add(goban.retourPierre(x,y-1));
-			}	
-		}
-		// Ajout de la pierre à droite si elle existe
-		if (x!=8) {
-			if (!goban.estLibre(x+1,y) ) {
-				pEntoure.add(goban.retourPierre(x+1,y));
+		// Ajout de la pierre à gauche si elle existe
+		if (c!=0) {
+			if (!goban.estLibre(l,c-1)) {
+				pEntoure.add(goban.retourPierre(l,c-1));
 			}	
 		}
 		// Ajout de la pierre en dessous si elle existe
-		if (y!=8) {
-			if (!goban.estLibre(x,y+1)) {
-				pEntoure.add(goban.retourPierre(x,y+1));
+		if (l!=8) {
+			if (!goban.estLibre(l+1,c) ) {
+				pEntoure.add(goban.retourPierre(l+1,c));
+			}	
+		}
+		// Ajout de la pierre à droite si elle existe
+		if (c!=8) {
+			if (!goban.estLibre(l,c+1)) {
+				pEntoure.add(goban.retourPierre(l,c+1));
 			}	
 		}
 		

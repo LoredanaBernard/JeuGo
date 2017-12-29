@@ -15,7 +15,7 @@ public class JoueurTest extends TestCase {
 
 	public void testPlacerPierre() {
 		Joueur j = new Joueur("n");
-		goban = new Goban();
+		goban = new Goban(9);
 		assertEquals("n",j.placerPierre(goban,1,1).color);
 		assertEquals("n2",j.placerPierre(goban,1,2).nom);
 		
@@ -42,7 +42,7 @@ public class JoueurTest extends TestCase {
 	}
 
 	public void testCapturePierre() {
-		Goban goban = new Goban();
+		Goban goban = new Goban(9);
 		Joueur j = new Joueur("n");
 		Pierre p = new Pierre("p1","b");
 		Pierre p2 = new Pierre("p2","n");
@@ -50,24 +50,24 @@ public class JoueurTest extends TestCase {
 		Pierre p4 = new Pierre("p4","n");
 		Pierre p5 = new Pierre("p5","n");
 			
-		p.x = 1;
-		p.y=1;		
+		p.l = 1;
+		p.c=1;		
 		goban.matricePierre[1][1] = p;
 		
-		p2.x=1;
-		p2.y=2;
+		p2.l=1;
+		p2.c=2;
 		goban.matricePierre[1][2]= p2;
 		
-		p3.x=1;
-		p3.y=0;
+		p3.l=1;
+		p3.c=0;
 		goban.matricePierre[1][0]= p3;
 
-		p4.x=0;
-		p4.y=1;
+		p4.l=0;
+		p4.c=1;
 		goban.matricePierre[0][1]= p4;
 
-		p5.x=2;
-		p5.y=1;
+		p5.l=2;
+		p5.c=1;
 		goban.matricePierre[2][1]= p5;
 		
 		assertEquals(false,goban.estLibre(1, 1));

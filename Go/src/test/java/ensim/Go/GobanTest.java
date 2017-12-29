@@ -17,7 +17,7 @@ public class GobanTest extends TestCase {
 	}
 
 	public void testEstLibre() {
-		goban = new Goban();
+		goban = new Goban(9);
 		Pierre p = new Pierre ("b1","n");
 		goban.matricePierre[1][1] = p;
 		assertEquals(false,goban.estLibre(1, 1));
@@ -25,7 +25,7 @@ public class GobanTest extends TestCase {
 	}
 
 	public void testRetourPierre() {
-		goban = new Goban();
+		goban = new Goban(9);
 		assertEquals(null,goban.retourPierre(0, 2));
 		
 		Pierre p = new Pierre ("b1","n");
