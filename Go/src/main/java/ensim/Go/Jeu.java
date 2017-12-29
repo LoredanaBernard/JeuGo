@@ -47,15 +47,15 @@ public class Jeu {
 	public static void afficherInstructions(Joueur j, String nom, Goban goban) {
 		sc = new Scanner(System.in);
 		int x1= -1;
-		while ( x1<0 || x1>8 ) {
-			System.out.println(nom + ", veuillez saisir une position de pierre :");
+		while ( x1<0 || x1>goban.taille ) {
+			System.out.println("\n"+nom + ", veuillez saisir une position de pierre :");
 			System.out.print("Ligne : ");
 			int str = sc.nextInt();
 			x1 = str;
 		}
 		l=x1;
 		int y2=-1;
-		while ( y2<0 || y2>8 ) {
+		while ( y2<0 || y2>goban.taille ) {
 			System.out.print("Colonne : ");
 			int str3 = sc.nextInt();
 			y2 = str3;
@@ -63,7 +63,13 @@ public class Jeu {
 		c =y2;
 		Pierre p = j.placerPierre(goban,l, c);
 		goban.afficherGoban();
-		j.capturePierre(goban,p);
+		if ( goban.estLibre(l, c)) {
+			j.capturePierre(goban,p);		
+		}
+		else {
+			afficherInstructions(j,nom,goban);
+		}
+		
 	}
 
 	public static void main(String[] args) {

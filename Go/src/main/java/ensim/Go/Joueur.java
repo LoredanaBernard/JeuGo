@@ -107,7 +107,7 @@ public class Joueur {
 					goban.afficherGoban();
 				}
 				nCaptureAdverse += aEnlever.size();
-				System.out.println("Pierre " + d.nom +" " + d.l + " "+ d.c+ " capturée");
+				System.out.println("\nPierre " + d.nom +" " + d.l + " "+ d.c+ " capturée");
 				goban.matricePierre[d.l][d.c] = null;  // Libère l'intersection du goban 
 				d.l = -1;	// Change la position de la pierre e, valeur négative pour sa sortie
 				d.c = -1;
