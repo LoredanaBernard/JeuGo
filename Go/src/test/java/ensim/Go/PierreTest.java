@@ -16,58 +16,58 @@ public class PierreTest extends TestCase {
 
 	public void testNBords() {
 		// Tests de retour 2
-		p.x = 0;
-		p.y = 0;
+		p.l = 0;
+		p.c = 0;
 		assertEquals(2,p.nBords());
 		
-		p.x = 0;
-		p.y = 8;
+		p.l = 0;
+		p.c = 8;
 		assertEquals(2,p.nBords());
 		
-		p.x = 8;
-		p.y = 0;
+		p.l = 8;
+		p.c = 0;
 		assertEquals(2,p.nBords());
 		
-		p.x = 8;
-		p.y = 8;
+		p.l = 8;
+		p.c = 8;
 		assertEquals(2,p.nBords());
 		
 		// Tests de retour 1
-		p.x = 0;
-		p.y = 1;
+		p.l = 0;
+		p.c = 1;
 		assertEquals(1,p.nBords());
 		
-		p.x = 2;
-		p.y = 0;
+		p.l = 2;
+		p.c = 0;
 		assertEquals(1,p.nBords());
 		
-		p.x = 8;
-		p.y = 2;
+		p.l = 8;
+		p.c = 2;
 		assertEquals(1,p.nBords());
 		
-		p.x = 1;
-		p.y = 8;
+		p.l = 1;
+		p.c = 8;
 		assertEquals(1,p.nBords());
 		
 		// Tests de retour 0
-		p.x = 1;
-		p.y = 2;
+		p.l = 1;
+		p.c = 2;
 		assertEquals(0,p.nBords());
 		
-		p.x = 5;
-		p.y = 1;
+		p.l = 5;
+		p.c = 1;
 		assertEquals(0,p.nBords());
 		
-		p.x = 6;
-		p.y = 6;
+		p.l = 6;
+		p.c = 6;
 		assertEquals(0,p.nBords());
 		
 	}
 
 	public void testEntoure() {
-		goban = new Goban();
-		p.x =1;
-		p.y =1;
+		goban = new Goban(9);
+		p.l =1;
+		p.c =1;
 		goban.matricePierre[1][1] = p;
 		
 		List<Pierre> list;
@@ -76,8 +76,8 @@ public class PierreTest extends TestCase {
 		assertEquals(0,list.size());
 		
 		Pierre p2 = new Pierre("p2","n");
-		p2.x =0;
-		p2.y =1;
+		p2.l =0;
+		p2.c =1;
 		goban.matricePierre[0][1] = p2;
 		
 		// Test de 1 pierre autour
@@ -86,8 +86,8 @@ public class PierreTest extends TestCase {
 		
 		
 		Pierre p3 = new Pierre("p3","n");
-		p3.x =1;
-		p3.y =2;
+		p3.l =1;
+		p3.c =2;
 		goban.matricePierre[1][2] = p3;
 				
 		list = p.entoure(goban);
@@ -97,13 +97,13 @@ public class PierreTest extends TestCase {
 		
 		// Test de 4 pierres autour
 		Pierre p4 = new Pierre("p4","n");
-		p4.x =2;
-		p4.y =1;
+		p4.l =2;
+		p4.c =1;
 		goban.matricePierre[2][1] = p4;
 		
 		Pierre p5 = new Pierre("p5","n");
-		p5.x =1;
-		p5.y =0;
+		p5.l =1;
+		p5.c =0;
 		goban.matricePierre[1][0] = p5;
 		
 		list = p.entoure(goban);
@@ -111,19 +111,19 @@ public class PierreTest extends TestCase {
 	}
 
 	public void testEntoureAdverse() {
-		goban = new Goban();
-		p.x =1;
-		p.y =1;
+		goban = new Goban(9);
+		p.l =1;
+		p.c =1;
 		goban.matricePierre[1][1] = p;		
 		
 		Pierre p2 = new Pierre("p2","b");
-		p2.x =0;
-		p2.y =1;
+		p2.l =0;
+		p2.c =1;
 		goban.matricePierre[0][1] = p2;
 		
 		Pierre p3 = new Pierre("p3","b");
-		p3.x =1;
-		p3.y =2;
+		p3.l =1;
+		p3.c =2;
 		goban.matricePierre[1][2] = p3;
 		
 		List<Pierre> list2;
@@ -134,19 +134,19 @@ public class PierreTest extends TestCase {
 	}
 
 	public void testEntoureAllie() {
-		goban = new Goban();
-		p.x =1;
-		p.y =1;
+		goban = new Goban(9);
+		p.l =1;
+		p.c =1;
 		goban.matricePierre[1][1] = p;		
 		
 		Pierre p2 = new Pierre("p2","n");
-		p2.x =0;
-		p2.y =1;
+		p2.l =0;
+		p2.c =1;
 		goban.matricePierre[0][1] = p2;
 		
 		Pierre p3 = new Pierre("p3","b");
-		p3.x =1;
-		p3.y =2;
+		p3.l =1;
+		p3.c =2;
 		goban.matricePierre[1][2] = p3;
 		
 		List<Pierre> list3;
@@ -157,21 +157,21 @@ public class PierreTest extends TestCase {
 	}
 
 	public void testNLibertes() {
-		Goban goban = new Goban();
+		Goban goban = new Goban(9);
 		Pierre p = new Pierre("p1","b");
 		Pierre p2 = new Pierre("p2","n");
 		Pierre p3 = new Pierre("p3","n");
 		
 		goban.matricePierre[1][1] = p;
-		p.x = 1;
-		p.y=1;		
+		p.l = 1;
+		p.c=1;		
 		
-		p2.x=1;
-		p2.y=2;
+		p2.l=1;
+		p2.c=2;
 		goban.matricePierre[1][2]= p2;
 		
-		p3.x=0;
-		p3.y=8;
+		p3.l=0;
+		p3.c=8;
 		goban.matricePierre[0][8]= p3;
 		
 		// Test du nombre de libertés de p
