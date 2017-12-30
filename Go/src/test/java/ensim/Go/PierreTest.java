@@ -127,7 +127,7 @@ public class PierreTest extends TestCase {
 		goban.matricePierre[1][2] = p3;
 		
 		List<Pierre> list2;
-		list2 = p.entoure(goban);
+		list2 = p.entoureAdverse(goban);
 		
 		assertEquals(2,list2.size());
 
@@ -150,7 +150,7 @@ public class PierreTest extends TestCase {
 		goban.matricePierre[1][2] = p3;
 		
 		List<Pierre> list3;
-		list3 = p.entoure(goban);
+		list3 = p.entoureAllie(goban);
 		
 		assertEquals(1,list3.size());
 

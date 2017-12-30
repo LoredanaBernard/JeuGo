@@ -5,16 +5,6 @@ import junit.framework.TestCase;
 public class GobanTest extends TestCase {
 	Goban goban;
 
-	public void testAfficherGoban() {
-		/*goban = new Goban();
-		String af = new String();
-		for ( int i=0 ; i<9 ; i++) {
-			for ( int j=0 ; j<9 ; j++) {
-				af += " + ";
-			}
-		}
-		assertEquals(af,goban.afficherGoban());*/
-	}
 
 	public void testEstLibre() {
 		goban = new Goban(9);

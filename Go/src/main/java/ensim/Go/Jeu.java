@@ -1,7 +1,5 @@
 package ensim.Go;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Jeu {
@@ -47,7 +45,7 @@ public class Jeu {
 	public static void afficherInstructions(Joueur j, String nom, Goban goban) {
 		sc = new Scanner(System.in);
 		int x1= -1;
-		while ( x1<0 || x1>goban.taille ) {
+		while ( x1<0 || x1>goban.taille-1 ) {
 			System.out.println("\n"+nom + ", veuillez saisir une position de pierre :");
 			System.out.print("Ligne : ");
 			int str = sc.nextInt();
@@ -55,18 +53,19 @@ public class Jeu {
 		}
 		l=x1;
 		int y2=-1;
-		while ( y2<0 || y2>goban.taille ) {
+		while ( y2<0 || y2>goban.taille-1 ) {
 			System.out.print("Colonne : ");
 			int str3 = sc.nextInt();
 			y2 = str3;
 		}
-		c =y2;
-		Pierre p = j.placerPierre(goban,l, c);
-		goban.afficherGoban();
+		c =y2;		
 		if ( goban.estLibre(l, c)) {
+			Pierre p = j.placerPierre(goban,l, c);
+			goban.afficherGoban();
 			j.capturePierre(goban,p);		
 		}
 		else {
+			System.out.println("\nIntersection non vide !");
 			afficherInstructions(j,nom,goban);
 		}
 		

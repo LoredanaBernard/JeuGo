@@ -39,6 +39,7 @@ public class Goban {
 	// Retourne si l'intersection est vide 
 	public boolean estLibre(int l, int c) {
 		return ( matricePierre[l][c] == null);
+
 	}
 	
 	// Retourne une pierre à une position donnée

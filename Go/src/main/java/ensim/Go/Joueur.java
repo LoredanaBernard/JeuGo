@@ -53,12 +53,12 @@ public class Joueur {
 		List <Pierre> aEnlever = new ArrayList<Pierre>();
 		List <Pierre> aAnalyser = new ArrayList<Pierre>();
 
+		boolean test = true;
 
-		pEntoure = r.entoureAdverse(goban);
 		pEntoure2 = pEntoure;
+		
 		for(Pierre p : pEntoure2) {
-
-			while ( (aAnalyser.size()>0 || compareList(pEntoure, aEnlever) == false ) && (p.nLibertes(goban)==0) ) {
+			while ( (aAnalyser.size()>0 || compareList(pEntoure, aEnlever) == false ) && (p.nLibertes(goban)==0)  ) {
 				if(aAnalyser.size()>0) {
 					if(p.equals(aAnalyser.get(0))){
 						aAnalyser.remove(0);
@@ -93,21 +93,25 @@ public class Joueur {
 							aAnalyser.add(pEntoure2.get(i)); 	// Ajout de la pierre dans la liste à analyser
 						}
 					}
-				}				
+				}	
+				if(p.nLibertes(goban)!=0) {
+					test=false;
+				}
 			}
 			pEntoure = r.entoureAdverse(goban);
 			pEntoure2 = pEntoure;
 
+
 		}
 
-		if ( aEnlever.size() !=0) {
+		if ( (aEnlever.size() !=0) && test == true) {
 			// Suppression des pierres
 			for (Pierre d : aEnlever) {
 				if ( aEnlever.size()!=0) {
 					goban.afficherGoban();
 				}
 				nCaptureAdverse += aEnlever.size();
-				System.out.println("\nPierre " + d.nom +" " + d.l + " "+ d.c+ " capturée");
+				System.out.println("\nPierre " + d.nom +" (" + d.l + ", "+ d.c+ ") capturée");
 				goban.matricePierre[d.l][d.c] = null;  // Libère l'intersection du goban 
 				d.l = -1;	// Change la position de la pierre e, valeur négative pour sa sortie
 				d.c = -1;

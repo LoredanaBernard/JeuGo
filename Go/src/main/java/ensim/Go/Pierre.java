@@ -45,13 +45,13 @@ public class Pierre {
 			}	
 		}
 		// Ajout de la pierre en dessous si elle existe
-		if (l!=8) {
+		if (l!=goban.taille-1) {
 			if (!goban.estLibre(l+1,c) ) {
 				pEntoure.add(goban.retourPierre(l+1,c));
 			}	
 		}
 		// Ajout de la pierre à droite si elle existe
-		if (c!=8) {
+		if (c!=goban.taille-1) {
 			if (!goban.estLibre(l,c+1)) {
 				pEntoure.add(goban.retourPierre(l,c+1));
 			}	
@@ -66,7 +66,7 @@ public class Pierre {
 		List<Pierre> listeEntoure = new ArrayList<Pierre>();
 		listeEntoure = entoure(goban);
 		for( Pierre p : entoure(goban)) {
-			if ( (p.color).equals(this.color)) {	// Si la pierre est de la même couleur que celle testée
+			if ( (p.color).equals(this.color)) {	// Si la pierre n'est pas de la même couleur que celle testée
 				listeEntoure.remove(p);		// On la supprime de la liste 
 			}
 		}		
